@@ -33,13 +33,16 @@ public slots:
     void pan(int dx, int dy);
     void resize(const model::ScreenResolution& res);
     void reset();
-    void render();
+    void coords(const model::ScreenPoint& pos);
 
 signals:
 
     void imageReady(const model::render::Image&);
+    void coordsReady(const std::complex<double>&);
 
 private:
+
+    void render();
 
     std::unique_ptr<model::fractals::IFractal> fractal_;
     std::unique_ptr<model::render::IColorScheme> color_scheme_;

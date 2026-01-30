@@ -26,10 +26,16 @@ int main(int argc, char** argv)
     QObject::connect(view,       &fe::view::QtFractalExplorerView::resetRequested,
                      controller, &fe::controller::FractalExplorerController::reset);
 
+    QObject::connect(view,       &fe::view::QtFractalExplorerView::coordsRequested,
+                     controller, &fe::controller::FractalExplorerController::coords);
+
+    QObject::connect(controller, &fe::controller::FractalExplorerController::coordsReady,
+                     view,       &fe::view::QtFractalExplorerView::showCoords);
+
     QObject::connect(controller, &fe::controller::FractalExplorerController::imageReady,
                      view,       &fe::view::QtFractalExplorerView::setImage);
 
-    mainWindow.resize(800, 600);
+    mainWindow.resize(895, 623);
     mainWindow.setCentralWidget(view);
     mainWindow.show();
 

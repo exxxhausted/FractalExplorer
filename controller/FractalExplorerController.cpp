@@ -51,6 +51,10 @@ void FractalExplorerController::reset() {
     render();
 }
 
+void FractalExplorerController::coords(const model::ScreenPoint& pos) {
+    emit coordsReady(camera_.map(pos));
+}
+
 void FractalExplorerController::set_max_iterations(std::size_t iters) { max_iters_ = iters; }
 
 std::size_t FractalExplorerController::max_iterations() const { return max_iters_; }

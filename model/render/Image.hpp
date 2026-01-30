@@ -23,16 +23,10 @@ public:
     void set_color(const ScreenPoint&, const Color&);
     Color color(const ScreenPoint&) const noexcept;
 
-    std::uint8_t* data() noexcept { return pixels_.data(); }
-    const std::uint8_t* data() const noexcept { return pixels_.data(); }
-
-
 private:
 
     ScreenResolution resolution_;
-    std::vector<std::uint8_t> pixels_;
-
-    std::size_t index(const ScreenPoint& p) const noexcept;
+    std::vector<Color> pixels_;
 
 };
 

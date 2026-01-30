@@ -1,4 +1,4 @@
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Concurrent)
 
 add_library(view STATIC
     QtFractalExplorerView.cpp
@@ -10,6 +10,7 @@ target_include_directories(view
 
 target_link_libraries(view PUBLIC
     Qt6::Widgets
+    Qt6::Concurrent
     model
 )
 

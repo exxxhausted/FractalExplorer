@@ -2,6 +2,9 @@
 #define QTFRACTALEXPLORERVIEW_HPP
 
 #include <QWidget>
+#include <QLabel>
+
+#include <complex>
 
 #include "../model/render/Image.hpp"
 
@@ -25,10 +28,12 @@ signals:
     void panRequested(int dx, int dy);
     void resizeRequested(const model::ScreenResolution& newRes);;
     void resetRequested();
+    void coordsRequested(const model::ScreenPoint& pos);
 
 public slots:
 
     void setImage(const model::render::Image&);
+    void showCoords(const std::complex<double>&);
 
 protected:
 
@@ -43,6 +48,7 @@ protected:
 
 private:
 
+    QLabel* coords_label_ptr_;
     QImage image_;
     QPointF last_mouse_pos_;
     bool dragging_ = false;

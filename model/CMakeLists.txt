@@ -7,6 +7,7 @@ add_library(model STATIC
     ./render/Image.cpp
     ./render/Renderer.cpp
     ./fractals/JuliaFractal.cpp
+    render/Image.cpp
 )
 target_link_libraries(model PUBLIC
     Qt6::Concurrent
