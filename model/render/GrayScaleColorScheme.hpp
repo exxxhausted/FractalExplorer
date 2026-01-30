@@ -7,7 +7,7 @@ namespace fe::model::render {
 
 class GrayScaleColorScheme : public IColorScheme {
 public:
-    Color interpret(const std::optional<std::size_t>& res, std::size_t max_iters) const override;
+    QRgb interpret(const std::optional<std::size_t>& res, std::size_t max_iters) const override;
 };
 
 } // namespace fe::model::render

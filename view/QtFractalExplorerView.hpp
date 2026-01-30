@@ -6,7 +6,7 @@
 
 #include <complex>
 
-#include "../model/render/Image.hpp"
+#include "../model/utils.hpp"
 
 namespace fe::controller {
 class FractalExplorerController;
@@ -32,7 +32,7 @@ signals:
 
 public slots:
 
-    void setImage(const model::render::Image&);
+    void setImage(const QImage&);
     void showCoords(const std::complex<double>&);
 
 protected:

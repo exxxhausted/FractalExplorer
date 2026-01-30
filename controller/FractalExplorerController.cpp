@@ -10,8 +10,7 @@ FractalExplorerController::FractalExplorerController(QObject* parent,
     color_scheme_(std::move(cs)) {}
 
 void FractalExplorerController::render() {
-    image_ = renderer_.render(*fractal_, camera_, *color_scheme_, max_iters_);
-    emit imageReady(image_);
+    emit imageReady(renderer_.render(*fractal_, camera_, *color_scheme_, max_iters_));
 }
 
 void FractalExplorerController::zoom(const model::ScreenPoint& mouse_position, double factor) {

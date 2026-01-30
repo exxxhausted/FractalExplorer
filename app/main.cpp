@@ -14,7 +14,7 @@ int main(int argc, char** argv)
     auto j = std::make_unique<fe::model::fractals::JuliaFractal>(std::complex<double>{-0.3, 0.67});
 
     auto* view       = new fe::view::QtFractalExplorerView(&mainWindow);
-    auto* controller = new fe::controller::FractalExplorerController(&mainWindow, std::move(j));
+    auto* controller = new fe::controller::FractalExplorerController(&mainWindow/*, std::move(j)*/);
 
     QObject::connect(view,       &fe::view::QtFractalExplorerView::zoomRequested,
                      controller, &fe::controller::FractalExplorerController::zoom);

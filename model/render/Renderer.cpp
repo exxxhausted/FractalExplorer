@@ -18,31 +18,31 @@ std::vector<Tile> Renderer::makeTiles(const model::ScreenResolution& res, std::s
     return tiles;
 }
 
-void Renderer::renderTile(model::render::Image& img,
-                const Tile& tile,
-                const model::render::Camera& camera,
-                const model::fractals::IFractal& fractal,
-                const model::render::IColorScheme& color_scheme,
-                std::size_t max_iters) const
+void Renderer::renderTile(QImage& img,
+                          const Tile& tile,
+                          const model::render::Camera& camera,
+                          const model::fractals::IFractal& fractal,
+                          const model::render::IColorScheme& color_scheme,
+                        std::size_t max_iters) const
 {
     for (std::size_t y = tile.y0; y < tile.y0 + tile.height; ++y) {
         for (std::size_t x = tile.x0; x < tile.x0 + tile.width; ++x) {
             auto c = camera.map({x, y});
             auto iter = fractal.escape_time(c, max_iters);
             auto color = color_scheme.interpret(iter, max_iters);
-            img.set_color({x, y}, color);
+            img.setPixelColor(x, y, color);
         }
     }
 }
 
-Image Renderer::render(const fractals::IFractal& fractal,
-                       const Camera& camera,
-                       const IColorScheme& color_scheme,
-                       std::size_t max_iters) const
+QImage Renderer::render(const fractals::IFractal& fractal,
+                        const Camera& camera,
+                        const IColorScheme& color_scheme,
+                        std::size_t max_iters) const
 {
     const auto res = camera.resolution();
 
-    Image image(res);
+    QImage image(res.width, res.height, QImage::Format_ARGB32);
 
     const std::size_t tileSize = 64;
     auto tiles = makeTiles(res, tileSize);

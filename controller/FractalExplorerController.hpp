@@ -11,6 +11,7 @@
 #include <memory>
 
 #include <QObject>
+#include <QImage>
 
 namespace fe::controller {
 
@@ -37,7 +38,7 @@ public slots:
 
 signals:
 
-    void imageReady(const model::render::Image&);
+    void imageReady(const QImage&);
     void coordsReady(const std::complex<double>&);
 
 private:
@@ -48,7 +49,6 @@ private:
     std::unique_ptr<model::render::IColorScheme> color_scheme_;
     model::render::Camera camera_{};
     model::render::Renderer renderer_{};
-    model::render::Image image_{camera_.resolution()};
     std::size_t max_iters_ = 250;
 
 };

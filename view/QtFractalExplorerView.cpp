@@ -34,30 +34,8 @@ QtFractalExplorerView::QtFractalExplorerView(QWidget* parent)
         );
 }
 
-void QtFractalExplorerView::setImage(const fe::model::render::Image& img) {
-    const auto res = img.resolution();
-
-    image_ = QImage(
-        int(res.width),
-        int(res.height),
-        QImage::Format_RGB888
-        );
-
-    QVector<int> rows;
-    rows.reserve(res.height);
-    for (std::size_t y = 0; y < res.height; ++y)
-        rows.push_back(y);
-
-    QtConcurrent::blockingMap(rows, [&](std::size_t y) {
-        uchar* line = image_.scanLine(y);
-        for (std::size_t x = 0; x < res.width; ++x) {
-            auto c = img.color({x, y});
-            line[3*x + 0] = c.r;
-            line[3*x + 1] = c.g;
-            line[3*x + 2] = c.b;
-        }
-    });
-
+void QtFractalExplorerView::setImage(const QImage& img) {
+    image_ = img;
     update();
 }
 

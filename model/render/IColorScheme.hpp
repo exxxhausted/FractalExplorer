@@ -3,14 +3,14 @@
 
 #include <optional>
 
-#include "Image.hpp"
+#include <QRgb>
 
 namespace fe::model::render {
 
 class IColorScheme {
 public:
     virtual ~IColorScheme() = default;
-    virtual Color interpret(const std::optional<std::size_t>& res, std::size_t max_iters) const = 0;
+    virtual QRgb interpret(const std::optional<std::size_t>& res, std::size_t max_iters) const = 0;
 };
 
 } // namespace fe::model::render
